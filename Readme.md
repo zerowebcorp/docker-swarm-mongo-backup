@@ -15,8 +15,8 @@ docker service create --name mongo-backup \
 --env mongodb_host="replica/127.0.0.1:27017,127.0.0.2:27017,127.0.0.3:27017" \
 --env s3bucket="myS3BucketName" \
 --env cron_interval="0,15,30,45 * * * *" \
---secret source=secret create mongo-backup-username,target=username \
---secret source=secret create mongo-backup-password,target=password \
+--secret source=mongo-backup-username,target=username \
+--secret source=mongo-backup-password,target=password \
 --with-registry-auth \
 --constraint "node.role != manager" \
 --detach=true \
